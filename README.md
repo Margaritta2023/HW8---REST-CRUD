@@ -9,7 +9,7 @@ examples of URLs
 3. Get a product by ID - http://localhost:${PORT}/products/:id [GET]
    - http://localhost:${PORT}/products/8
   
- 4.Create a new product  - http://localhost:${PORT}/products [POST] 
+  4.Create a new product  - http://localhost:${PORT}/products [POST] 
   - stock.available is a non-negative integer.
   - price is a positive number.
   - insert into body JSON formatted object, choose raw {
