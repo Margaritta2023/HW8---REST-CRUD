@@ -1,5 +1,7 @@
 This is a CRUD RESTful API’s with TypeScript and Express.js 
+
 examples of URLs
+
 1. Get all products - http://localhost:${PORT}/products. [GET]
    
 2. Filter by category - http://localhost:${PORT}/products?category=${category} [GET]
