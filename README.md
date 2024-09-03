@@ -43,6 +43,7 @@ examples of URLs
       "price": 1999.99,
       }
 
+
 6. Delete a product by id - http://localhost:${PORT}/products/:id [DELETE]
 7. Partial updates specifically for updating the street field of the manufacturer.address http://localhost:${PORT}/products/:id/manufacturer/address [PATCH]
   - http://localhost:${PORT}/products/10/manufacturer/address {

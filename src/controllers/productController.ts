@@ -116,7 +116,6 @@ export const updateProduct = async (req: Request, res: Response) : Promise<void>
        res.status(404).send('Product not found' );
        return
     }
-
     data.products[productIndex] = { ...data.products[productIndex], ...req.body };
     await writeProducts(data,filePath);
     res.json(data.products[productIndex]);

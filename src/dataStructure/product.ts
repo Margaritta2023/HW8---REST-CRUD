@@ -17,7 +17,6 @@ export type Stock = {
     location: string;
   }
 
-  
 export type Address = {
   street?: string;
   city?: string;

@@ -17,4 +17,5 @@ router.put('/:id', updateProduct);
 router.patch('/:id/manufacturer/address', partialUpdateProduct);
 router.delete('/:id', deleteProduct);
 
+
 export default router;
