@@ -111,7 +111,7 @@ export const updateProduct = async (req: Request, res: Response) => {
   try {
     const data = await readProducts(filePath);
     const productIndex = data.products.findIndex(p => p.id === req.params.id && !p.deleted);
-    
+
     if (productIndex === -1) {
       return res.status(404).send('Product not found' );
     }
@@ -183,6 +183,7 @@ export const deleteProduct = async (req: Request, res: Response) :Promise<void> 
   } catch (error) {
     res.status(500).send("Server error");
   }
+  
 };
 
 
