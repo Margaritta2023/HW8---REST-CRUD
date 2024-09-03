@@ -15,9 +15,9 @@ export const getProducts = async (req: Request, res: Response): Promise<void> =>
     // get category query parameter if it exists
     const categoryFilter = req.query.category as string | undefined;
 
-    // Filter products by category if categoryFilter is provided
+    // Filter products by category if categoryFilter exists
     if (categoryFilter) {
-      const filteredProducts = data.products.filter(product => product.category === categoryFilter);
+      const filteredProducts = data.products.filter(product => product.category === categoryFilter && !product.deleted);
       
       if (filteredProducts.length === 0) {
         res.status(404).send("No products found for the given category");
@@ -27,9 +27,9 @@ export const getProducts = async (req: Request, res: Response): Promise<void> =>
         return;
       }
     }
-
-    //If no categoryFilter is provided, return all products
-    res.json(data.products);
+    //If no categoryFilter is provided,filter not deleted products and return all products
+    const getNotDeleted = data.products.filter(product =>  !product.deleted);
+    res.json(getNotDeleted);
   } catch (error) {
     console.error('Error fetching products:', error);
     res.status(500).send("Server error");
@@ -111,8 +111,7 @@ export const updateProduct = async (req: Request, res: Response) => {
   try {
     const data = await readProducts(filePath);
     const productIndex = data.products.findIndex(p => p.id === req.params.id && !p.deleted);
-    console.log("Product index",productIndex)
-    console.log("request body",req.body)
+    
     if (productIndex === -1) {
       return res.status(404).send('Product not found' );
     }
@@ -126,6 +125,7 @@ export const updateProduct = async (req: Request, res: Response) => {
 };
 
 // PATCH /products/:id/manufacturer/address
+
 export const partialUpdateProduct = async (req: Request, res: Response) => {
   try {
     const data = await readProducts(filePath);
@@ -135,17 +135,19 @@ export const partialUpdateProduct = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    // check if manufacturer objects exist
+    // Create manufacturer and address objects if they do not exist exist
     if (!product.manufacturer) {
       product.manufacturer = {};
     }
-    // check if manufacturer address objects exists
     if (!product.manufacturer.address) {
       product.manufacturer.address = {};
     }
 
-    // Update fields from request body
-    if (req.body.manufacturer && req.body.manufacturer.address) {
+    // Update the street field directly if it's present in the request body
+    if (req.body.street) {
+      product.manufacturer.address.street = req.body.street;
+    } else if (req.body.manufacturer && req.body.manufacturer.address) {
+      
       const addressUpdate = req.body.manufacturer.address;
       product.manufacturer.address = {
         ...product.manufacturer.address,
@@ -153,7 +155,7 @@ export const partialUpdateProduct = async (req: Request, res: Response) => {
       };
     }
 
-    await writeProducts(data,filePath);
+    await writeProducts(data, filePath);
     res.json(product);
   } catch (error) {
     console.error('Error updating product:', error);
