@@ -107,13 +107,14 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
 
 
 // PUT /products/:id
-export const updateProduct = async (req: Request, res: Response) => {
+export const updateProduct = async (req: Request, res: Response) : Promise<void> => {
   try {
     const data = await readProducts(filePath);
     const productIndex = data.products.findIndex(p => p.id === req.params.id && !p.deleted);
 
     if (productIndex === -1) {
-      return res.status(404).send('Product not found' );
+       res.status(404).send('Product not found' );
+       return
     }
 
     data.products[productIndex] = { ...data.products[productIndex], ...req.body };
@@ -126,13 +127,14 @@ export const updateProduct = async (req: Request, res: Response) => {
 
 // PATCH /products/:id/manufacturer/address
 
-export const partialUpdateProduct = async (req: Request, res: Response) => {
+export const partialUpdateProduct = async (req: Request, res: Response) :Promise<void>  => {
   try {
     const data = await readProducts(filePath);
     const product = data.products.find(p => p.id === req.params.id && !p.deleted);
 
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+       res.status(404).json({ message: 'Product not found' });
+      return
     }
 
     // Create manufacturer and address objects if they do not exist exist
