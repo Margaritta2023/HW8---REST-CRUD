@@ -5,7 +5,7 @@ import { readProducts } from '../helpers/readProducts';
 import { generateId} from '../helpers/generateId';
 import { writeProducts} from '../helpers/writeProducts';
 
-const filePath = path.resolve(__dirname, '../products.json');
+const filePath: string = path.resolve(__dirname, '../products.json');
 
 // GET /products (with optional category filter)
 export const getProducts = async (req: Request, res: Response): Promise<void> => {
