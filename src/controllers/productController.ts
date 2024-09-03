@@ -183,7 +183,6 @@ export const deleteProduct = async (req: Request, res: Response) :Promise<void> 
   } catch (error) {
     res.status(500).send("Server error");
   }
-  
 };
 
 
