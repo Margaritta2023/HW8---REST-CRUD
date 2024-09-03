@@ -9,7 +9,9 @@ examples of URLs
 3. Get a product by ID - http://localhost:${PORT}/products/:id [GET]
    - http://localhost:${PORT}/products/8
   
- 4.Create a new product - http://localhost:${PORT}/products [POST] 
+ 4.Create a new product  - http://localhost:${PORT}/products [POST] 
+  - stock.available is a non-negative integer.
+  - price is a positive number.
   - insert into body JSON formatted object, choose raw {
      
       "name": "NEWSmartphone",
@@ -40,5 +42,8 @@ examples of URLs
       }
 
 6. Delete a product by id - http://localhost:${PORT}/products/:id [DELETE]
-7.
+7. Partial updates specifically for updating the street field of the manufacturer.address
+  - http://localhost:${PORT}/products/manufacturer/address {
+     “street”: “Mashtots”
+      }
 
