@@ -42,8 +42,8 @@ examples of URLs
       }
 
 6. Delete a product by id - http://localhost:${PORT}/products/:id [DELETE]
-7. Partial updates specifically for updating the street field of the manufacturer.address
-  - http://localhost:${PORT}/products/manufacturer/address {
+7. Partial updates specifically for updating the street field of the manufacturer.address http://localhost:${PORT}/products/:id/manufacturer/address [PATCH]
+  - http://localhost:${PORT}/products/10/manufacturer/address {
      “street”: “Mashtots”
       }
 
