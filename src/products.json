@@ -178,7 +178,7 @@
         "bluetooth"
       ],
       "rating": 4.7,
-      "deleted": false
+      "deleted": true
     },
     {
       "id": "10",
@@ -198,7 +198,12 @@
         "4K"
       ],
       "rating": 4.6,
-      "deleted": false
+      "deleted": false,
+      "manufacturer": {
+        "address": {
+          "street": "Mashtots"
+        }
+      }
     },
     {
       "id": "11",
@@ -298,7 +303,10 @@
         "fast charging"
       ],
       "rating": 4.3,
-      "deleted": false
+      "deleted": false,
+      "manufacturer": {
+        "address": {}
+      }
     },
     {
       "id": "16",
@@ -358,7 +366,12 @@
         "appliances"
       ],
       "rating": 4.6,
-      "deleted": false
+      "deleted": false,
+      "manufacturer": {
+        "address": {
+          "street": "Mashtots"
+        }
+      }
     },
     {
       "id": "19",
@@ -2007,7 +2020,7 @@
         "recreation"
       ],
       "rating": 4.5,
-      "deleted": false
+      "deleted": true
     },
     {
       "id": "101",
@@ -2107,6 +2120,26 @@
         "appliances"
       ],
       "rating": 4.4,
+      "deleted": false
+    },
+    {
+      "id": "106",
+      "name": "NewLine-UPDATED",
+      "description": "Latest generation smartphone with 5G connectivity",
+      "price": 999.99,
+      "category": "Electronics",
+      "stock": {
+        "available": 50,
+        "reserved": 5,
+        "location": "Warehouse C"
+      },
+      "tags": [
+        "smartphone",
+        "mobile",
+        "5G",
+        "electronics"
+      ],
+      "rating": 4.7,
       "deleted": false
     }
   ]
